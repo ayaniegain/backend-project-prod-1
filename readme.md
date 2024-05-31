@@ -83,5 +83,25 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 2. multer (use in middleware) , also hande the file and diskstorage where save the file.
 
-
+--------------HTTPS--------
+1. headers: metadata key value and along with send req ad res.
  
+ Accept :application/json
+ user- agent
+ authorization Bearer
+
+ ---------create controller and routers-----
+
+1. router.route("/register").post(registerUser)
+2. also should pass controller via utilles file 
+
+const asyncHandler = (fn) => async (req, res, next) => {
+  try {
+    await fn(req, res, next);
+  } catch (err) {
+    res.status(err.code || 500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
