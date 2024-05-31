@@ -105,3 +105,34 @@ const asyncHandler = (fn) => async (req, res, next) => {
     });
   }
 };
+
+-----------we are trying to register one user ------
+
+1. error handeling advance
+
+
+   if ([fullName,email,username,password].some((field)=>field?.trim()==="")) {
+    throw new ApiError(400,"All field are required")
+   }
+
+   let existingUser= User.findOne({
+    $or : [{username}, {email}]
+   })
+
+2. use multer in the router as a middleware "upload"
+
+import { upload } from "../middlewares/multer.middleware.js";
+
+router.route("/register").post(
+  upload.fields([
+    {
+      name: "avatar",
+      maxCount: 1,
+    },
+    {
+      name: "coverImage",
+      maxCount: 1,
+    },
+  ]),
+  registerUser
+);
