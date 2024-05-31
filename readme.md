@@ -1,3 +1,5 @@
+---------node js init----------
+
 1. initial a git init for new git repo
 2. create a public file basically kept the image file and all 
 3. .env and .env.sample for sharing the data with team.
@@ -75,6 +77,11 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     ACCESS_TOKEN_EXPIRY= secrect key
     ACCESS_TOKEN_EXPIRY=10d
 4. also create a methode in schema 
+
+----------file save----
+1. cloudenary (seperate utils) and use for data save in 3rd party services.
+
+2. multer (use in middleware) , also hande the file and diskstorage where save the file.
 
 
  
