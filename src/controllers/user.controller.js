@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandeler.js";
 import { ApiError } from "../utils/apiError.js";
 import { User } from "../models/user.model.js";
-import { uploadOnCloudenary } from "../utils/cloudinary.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 
 
@@ -29,8 +29,8 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "avatar localpath required ");
   }
   
-  const avatar = await uploadOnCloudenary(avatarlocalPath);
-  const coverImage = await uploadOnCloudenary(coverImagelocalPath);
+  const avatar = await uploadOnCloudinary(avatarlocalPath);
+  const coverImage = await uploadOnCloudinary(coverImagelocalPath);
   
   if (!avatar) {
     throw new ApiError(409, "avatar required ");
@@ -47,8 +47,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
    });
 
-   let createdUser= await User.findById(user._id).select(-password -refreshToken)
+   const createdUser = await User.findById(user._id).select("-password -refreshToken")
 
+console.log("createdUser",createdUser)
    if(!createdUser){
     throw new ApiError(500, "something went wrong while new user create ");
 
